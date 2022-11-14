@@ -189,7 +189,7 @@ class parser
 			os << get_description_text(style) << "\n";
 
 		os << "OPTIONS, ARGUMENTS:\n";
-		const std::string::size_type left_col_size = 26 - 3;
+		const std::string::size_type left_col_size = 35 - 3;
 		const std::string left_pad(left_col_size, ' ');
 		for (auto const & cols : get_help_text(style))
 		{
