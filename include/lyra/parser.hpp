@@ -184,22 +184,22 @@ class parser
 			os << "USAGE:\n"
 			   << "  " << get_usage_text(style) << "\n\n";
 
-		std::string description_test = get_description_text(style);
-		if (!description_test.empty())
-			os << get_description_text(style) << "\n";
-
 		os << "OPTIONS, ARGUMENTS:\n";
 		const std::string::size_type left_col_size = 35 - 3;
 		const std::string left_pad(left_col_size, ' ');
 		for (auto const & cols : get_help_text(style))
 		{
+			std::string description = (cols.option == "-?, -h, --help")
+				? get_description_text(style)
+				: cols.description + "\n";
+
 			if (cols.option.size() > left_pad.size())
 				os << "  " << cols.option << "\n  " << left_pad << " "
-				   << cols.description << "\n";
+				   << description;
 			else
 				os << "  " << cols.option
 				   << left_pad.substr(0, left_pad.size() - cols.option.size())
-				   << " " << cols.description << "\n";
+				   << " " << description;
 		}
 	}
 };
